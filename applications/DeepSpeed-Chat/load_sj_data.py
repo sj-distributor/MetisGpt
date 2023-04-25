@@ -35,24 +35,13 @@ import datetime
 import time
 import torch
 
-from training.utils.data.data_utils import create_prompt_dataset
+from training.utils.data.data_utils import get_raw_dataset
 from transformers import AutoTokenizer
 
 
 def main():
-    torch.distributed.init_process_group()
-    tokenizer = AutoTokenizer.from_pretrained('distilbert-base-uncased',
-                                              fast_tokenizer=True)
-    train_dataset, eval_dataset = create_prompt_dataset(
-        1,
-        ['Dahoas/rm-static'],
-        '6,2,2',
-        '/tmp/data_files/',
-        1,
-        1234,
-        tokenizer,
-        512,
-        sft_only_data_path=[])
+    ds = get_raw_dataset('SJ/CNFAQ', './', 1, 1)
+    train_dataset = ds.get_train_data()
     print(train_dataset)
 
 
