@@ -33,12 +33,14 @@ import subprocess
 import os
 import datetime
 import time
+import torch
 
 from training.utils.data.data_utils import create_prompt_dataset
 from transformers import AutoTokenizer
 
 
 def main():
+    torch.distributed.init_process_group()
     tokenizer = AutoTokenizer.from_pretrained('distilbert-base-uncased',
                                               fast_tokenizer=True)
     train_dataset, eval_dataset = create_prompt_dataset(
