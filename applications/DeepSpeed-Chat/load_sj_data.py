@@ -34,7 +34,7 @@ import os
 import datetime
 import time
 
-from utils.data.data_utils import create_prompt_dataset
+from training.utils.data.data_utils import create_prompt_dataset
 from transformers import AutoTokenizer
 
 
@@ -51,6 +51,7 @@ def main():
         tokenizer,
         512,
         sft_only_data_path=[])
+    print(train_dataset)
 
 
 if __name__ == "__main__":
