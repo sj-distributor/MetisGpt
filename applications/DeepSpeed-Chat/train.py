@@ -57,7 +57,7 @@ def parse_args():
         "--actor-model",
         type=lambda x: x.replace("facebook/opt-", ""),
         default="1.3b",
-        choices=("1.3b", "6.7b", "13b", "66b"),
+        choices=("1.3b", "6.7b", "13b", "66b", "125m", "350m"),
         help="Which facebook/opt-* model to use for Actor (step 1)",
     )
     parser.add_argument(
