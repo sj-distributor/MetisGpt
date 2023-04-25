@@ -513,6 +513,64 @@ class MkqaChineseDataset(PromptRawDataset):
         return None
 
 
+# Chinese dataset
+class SjFaqDataset(PromptRawDataset):
+
+    def __init__(self, output_path, seed, local_rank):
+        super().__init__(output_path, seed, local_rank)
+        self.dataset_name = "SJ/CNFAQ"
+        self.dataset_name_clean = "SJ_CN_FAQ"
+        self.raw_datasets = load_dataset('json', data_files='allInOneJson.json')
+
+    def get_train_data(self):
+        from .data_utils import get_raw_dataset_split_index
+        dataset = self.raw_datasets["train"]
+        index = get_raw_dataset_split_index(self.local_rank, self.output_path,
+                                            self.dataset_name_clean,
+                                            self.seed, "train_eval", "9,1", 0,
+                                            len(dataset))
+        dataset = Subset(dataset, index)
+        return dataset
+
+    def get_eval_data(self):
+        from .data_utils import get_raw_dataset_split_index
+        dataset = self.raw_datasets["train"]
+        index = get_raw_dataset_split_index(self.local_rank, self.output_path,
+                                            self.dataset_name_clean,
+                                            self.seed, "train_eval", "9,1", 1,
+                                            len(dataset))
+        dataset = Subset(dataset, index)
+        return dataset
+
+    def get_prompt(self, sample):
+        if sample['question'] is not None:
+            return " Human: " + sample['question'] + " Assistant:"
+        return None
+
+    def get_chosen(self, sample):
+        if sample['human_answers'][0] is not None:
+            return " " + sample['human_answers'][0]
+        return None
+
+    def get_rejected(self, sample):
+        print(
+            f"Warning: dataset {self.dataset_name} does not include rejected response."
+        )
+        return None
+
+    def get_prompt_and_chosen(self, sample):
+        if sample['question'] is not None and sample['human_answers'][
+                0] is not None:
+            return " Human: " + sample['question'] + " Assistant: " + sample[
+                'human_answers'][0]
+        return None
+
+    def get_prompt_and_rejected(self, sample):
+        print(
+            f"Warning: dataset {self.dataset_name} does not include rejected response."
+        )
+        return None
+
 # Japanese dataset
 class MkqaJapaneseDataset(PromptRawDataset):
 

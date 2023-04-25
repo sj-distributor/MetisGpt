@@ -14,6 +14,9 @@ import numpy as np
 import os
 import hashlib
 from itertools import chain
+
+from transformers import AutoTokenizer
+
 from . import raw_datasets
 
 
@@ -56,6 +59,8 @@ def get_raw_dataset(dataset_name, output_path, seed, local_rank):
         return raw_datasets.LmqgQgjaquadDataset(output_path, seed, local_rank)
     elif dataset_name == "lmqg/qag_jaquad":
         return raw_datasets.LmqgQagjaquadDataset(output_path, seed, local_rank)
+    elif dataset_name == "SJ/CNFAQ":
+        return raw_datasets.SjFaqDataset(output_path, seed, local_rank)
     else:
         raise RuntimeError(
             f"We do not have configs for dataset {dataset_name}, but you can add it by yourself in raw_datasets.py."
