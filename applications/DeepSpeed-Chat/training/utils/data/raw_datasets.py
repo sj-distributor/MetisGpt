@@ -518,11 +518,13 @@ class SjFaqDataset(PromptRawDataset):
 
     def __init__(self, output_path, seed, local_rank):
         super().__init__(output_path, seed, local_rank)
+        print('start loading SJ dataset')
         self.dataset_name = "SJ/CNFAQ"
         self.dataset_name_clean = "SJ_CN_FAQ"
         self.raw_datasets = load_dataset('json', data_files='allInOneJson.json')
 
     def get_train_data(self):
+        print('start getting SJ training dataset')
         from .data_utils import get_raw_dataset_split_index
         dataset = self.raw_datasets["train"]
         index = get_raw_dataset_split_index(self.local_rank, self.output_path,
@@ -533,6 +535,7 @@ class SjFaqDataset(PromptRawDataset):
         return dataset
 
     def get_eval_data(self):
+        print('start getting SJ eval dataset')
         from .data_utils import get_raw_dataset_split_index
         dataset = self.raw_datasets["train"]
         index = get_raw_dataset_split_index(self.local_rank, self.output_path,
