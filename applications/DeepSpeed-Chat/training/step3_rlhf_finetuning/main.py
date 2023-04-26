@@ -50,7 +50,7 @@ def parse_args():
     parser.add_argument(
         '--data_path',
         nargs='*',
-        default=['Dahoas/rm-static'],
+        default=['SJ/CNFAQ', 'wangrui6/Zhihu-KOL', 'Cohere/miracl-zh-queries-22-12', 'Hello-SimpleAI/HC3-Chinese', 'mkqa-Chinese'],
         help=
         'Path to the training dataset. Accepted format: 1) a single data path, 2) multiple datasets in the form: dataset1-path dataset2-path ...'
     )
@@ -107,14 +107,14 @@ def parse_args():
     parser.add_argument(
         "--per_device_train_batch_size",
         type=int,
-        default=16,
+        default=8,
         help=
         "Batch size (per device) for the training dataloader and generation purpose."
     )
     parser.add_argument(
         "--per_device_mini_train_batch_size",
         type=int,
-        default=16,
+        default=8,
         help=
         "Mini Batch size (per device) for the training dataloader and training purpose."
     )
