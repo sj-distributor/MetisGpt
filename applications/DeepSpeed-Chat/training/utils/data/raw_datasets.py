@@ -522,6 +522,7 @@ class SjFaqDataset(PromptRawDataset):
         self.dataset_name = "SJ/CNFAQ"
         self.dataset_name_clean = "SJ_CN_FAQ"
         self.raw_datasets = load_dataset('json', data_files='allInOneJson.json')
+        print(self.raw_datasets)
 
     def get_train_data(self):
         print('start getting SJ training dataset')
