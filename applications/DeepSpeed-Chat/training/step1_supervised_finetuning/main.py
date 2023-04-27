@@ -38,7 +38,7 @@ def parse_args():
         "Finetune a transformers model on a causal language modeling task")
     parser.add_argument('--data_path',
                         nargs='*',
-                        default=['SJ/CNFAQ', 'Cohere/miracl-zh-queries-22-12', 'Hello-SimpleAI/HC3-Chinese'],
+                        default=['SJ/CNFAQ', 'Cohere/miracl-zh-queries-22-12', 'Hello-SimpleAI/HC3-Chinese', 'mkqa-Chinese', 'Dahoas/full-hh-rlhf', 'Dahoas/rm-static', 'Dahoas/synthetic-instruct-gptj-pairwise'],
                         help='Path to the training dataset. Accepted format:'
                         '1) a single data path, 2) multiple datasets in the'
                         'form: dataset1-path dataset2-path ...')
