@@ -38,7 +38,7 @@ def parse_args():
         "Finetune a transformers model on a causal language modeling task")
     parser.add_argument('--data_path',
                         nargs='*',
-                        default=['SJ/CNFAQ', 'Cohere/miracl-zh-queries-22-12', 'Hello-SimpleAI/HC3-Chinese', 'mkqa-Chinese', 'Dahoas/full-hh-rlhf', 'Dahoas/rm-static', 'Dahoas/synthetic-instruct-gptj-pairwise'],
+                        default=['SJ/CNFAQ', 'Cohere/miracl-zh-queries-22-12', 'Hello-SimpleAI/HC3-Chinese', 'mkqa-Chinese', 'Dahoas/rm-static'],
                         help='Path to the training dataset. Accepted format:'
                         '1) a single data path, 2) multiple datasets in the'
                         'form: dataset1-path dataset2-path ...')
@@ -99,7 +99,7 @@ def parse_args():
                         help="Weight decay to use.")
     parser.add_argument("--num_train_epochs",
                         type=int,
-                        default=10,
+                        default=4,
                         help="Total number of training epochs to perform.")
     parser.add_argument(
         "--gradient_accumulation_steps",

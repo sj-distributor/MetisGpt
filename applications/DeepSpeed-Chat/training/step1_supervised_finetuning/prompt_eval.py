@@ -73,7 +73,7 @@ def parse_args():
     )
     parser.add_argument("--language",
                         type=str,
-                        default="English",
+                        default="Chinese",
                         choices=["English", "Chinese", "Japanese"])
 
     args = parser.parse_args()
@@ -226,11 +226,20 @@ def main():
         ]
     elif args.language == "Chinese":
         prompts = [
+            "Human: Please tell me about Microsoft in a few sentence? Assistant:",
+            "Human: Explain the moon landing to a 6 year old in a few sentences. Assistant:",
+            "Human: Write a short poem about a wise frog. Assistant:",
+            "Human: Who was president of the United States in 1955? Assistant:",
+            "Human: How does a telescope work? Assistant:",
+            "Human: Why do birds migrate south for the winter? Assistant:",
             "Human: 请用几句话介绍一下微软? Assistant:",
             "Human: 用几句话向6岁的孩子解释登月。 Assistant:",
             "Human: 写一首关于一只聪明的青蛙的短诗。 Assistant:",
             "Human: 谁是1955年的美国总统? Assistant:", "Human: 望远镜是如何工作的? Assistant:",
-            "Human: 鸟类为什么要南迁过冬? Assistant:"
+            "Human: 鸟类为什么要南迁过冬? Assistant:",
+            "Human: 蔬菜退貨的相片有什麼要求？ Assistant:",
+            "Human: 內部推薦簡歷是由推薦人還是被推薦人發送？ Assistant:",
+            "Human: 如何尋找/搜索新的供應商？ Assistant:"
         ]
     elif args.language == "Japanese":
         prompts = [
