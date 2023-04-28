@@ -99,7 +99,7 @@ def parse_args():
                         help="Weight decay to use.")
     parser.add_argument("--num_train_epochs",
                         type=int,
-                        default=6,
+                        default=2,
                         help="Total number of training epochs to perform.")
     parser.add_argument(
         "--gradient_accumulation_steps",
