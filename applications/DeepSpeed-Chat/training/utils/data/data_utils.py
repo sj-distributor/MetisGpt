@@ -63,6 +63,8 @@ def get_raw_dataset(dataset_name, output_path, seed, local_rank):
         return raw_datasets.SjFaqDataset(output_path, seed, local_rank)
     elif dataset_name == "madao33/new-title-chinese":
         return raw_datasets.Madao33Dataset(output_path, seed, local_rank)
+    elif dataset_name == "sunzeyeah/chinese_chatgpt_corpus":
+        return raw_datasets.SunzeyeahChineseChatgptCorpusDataset(output_path, seed, local_rank)
     else:
         raise RuntimeError(
             f"We do not have configs for dataset {dataset_name}, but you can add it by yourself in raw_datasets.py."

@@ -621,6 +621,51 @@ class Madao33Dataset(PromptRawDataset):
         )
         return None
 
+class SunzeyeahChineseChatgptCorpusDataset(PromptRawDataset):
+
+    def __init__(self, output_path, seed, local_rank):
+        super().__init__(output_path, seed, local_rank)
+        print('start loading sunzeyeah/chinese_chatgpt_corpus dataset')
+        self.dataset_name = "sunzeyeah/chinese_chatgpt_corpus"
+        self.dataset_name_clean = "sunzeyeah_chinese_chatgpt_corpus"
+        self.raw_datasets = load_dataset('sunzeyeah/chinese_chatgpt_corpus')
+        print(self.raw_datasets)
+
+    def get_train_data(self):
+        print('start getting sunzeyeah/chinese_chatgpt_corpus training dataset')
+        return self.raw_datasets["train"]
+
+    def get_eval_data(self):
+        print('start getting sunzeyeah/chinese_chatgpt_corpus eval dataset')
+        return self.raw_datasets["validation"]
+
+    def get_prompt(self, sample):
+        if sample['prompt'] is not None:
+            return " Human: " + sample['prompt'] + " Assistant:"
+        return None
+
+    def get_chosen(self, sample):
+        if sample['answers'] is not None:
+            return " " + sample['answers'][0]['answer']
+        return None
+
+    def get_rejected(self, sample):
+        print(
+            f"Warning: dataset {self.dataset_name} does not include rejected response."
+        )
+        return None
+
+    def get_prompt_and_chosen(self, sample):
+        if sample['prompt'] is not None and sample['answers'] is not None:
+            return " Human: " + sample['prompt'] + " Assistant: " + sample['answers'][0]['answer']
+        return None
+
+    def get_prompt_and_rejected(self, sample):
+        print(
+            f"Warning: dataset {self.dataset_name} does not include rejected response."
+        )
+        return None
+
 # Japanese dataset
 class MkqaJapaneseDataset(PromptRawDataset):
 
