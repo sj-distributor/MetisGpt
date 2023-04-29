@@ -575,6 +575,52 @@ class SjFaqDataset(PromptRawDataset):
         )
         return None
 
+
+class Madao33Dataset(PromptRawDataset):
+
+    def __init__(self, output_path, seed, local_rank):
+        super().__init__(output_path, seed, local_rank)
+        print('start loading madao33/new-title-chinese dataset')
+        self.dataset_name = "madao33/new-title-chinese"
+        self.dataset_name_clean = "madao33_new-title-chinese"
+        self.raw_datasets = load_dataset('madao33/new-title-chinese')
+        print(self.raw_datasets)
+
+    def get_train_data(self):
+        print('start getting madao33 training dataset')
+        return self.raw_datasets["train"]
+
+    def get_eval_data(self):
+        print('start getting madao33 eval dataset')
+        return self.raw_datasets["validation"]
+
+    def get_prompt(self, sample):
+        if sample['title'] is not None:
+            return " Human: " + sample['title'] + " Assistant:"
+        return None
+
+    def get_chosen(self, sample):
+        if sample['content'] is not None:
+            return " " + sample['content']
+        return None
+
+    def get_rejected(self, sample):
+        print(
+            f"Warning: dataset {self.dataset_name} does not include rejected response."
+        )
+        return None
+
+    def get_prompt_and_chosen(self, sample):
+        if sample['title'] is not None and sample['content'] is not None:
+            return " Human: " + sample['title'] + " Assistant: " + sample['content']
+        return None
+
+    def get_prompt_and_rejected(self, sample):
+        print(
+            f"Warning: dataset {self.dataset_name} does not include rejected response."
+        )
+        return None
+
 # Japanese dataset
 class MkqaJapaneseDataset(PromptRawDataset):
 
