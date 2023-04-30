@@ -50,7 +50,7 @@ def parse_args():
     parser.add_argument(
         '--data_path',
         nargs='*',
-        default=['SJ/CNFAQ', 'Hello-SimpleAI/HC3-Chinese'],
+        default=['Dahoas/rm-static', 'Dahoas/synthetic-instruct-gptj-pairwise', 'yitingxie/rlhf-reward-datasets'],
         help=
         'Path to the training dataset. Accepted format: 1) a single data path, 2) multiple datasets in the form: dataset1-path dataset2-path ...'
     )
