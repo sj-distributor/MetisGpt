@@ -15,6 +15,6 @@ if [ "$ZERO_STAGE" == "" ]; then
 fi
 mkdir -p $OUTPUT
 
-deepspeed --num_gpus 1 main.py --model_name_or_path ../../output/actor-models/350m \
+deepspeed --num_gpus 1 main.py --model_name_or_path ../../output/step3-models/350m/actor \
    --gradient_accumulation_steps 8 --lora_dim 128 --zero_stage $ZERO_STAGE \
    --deepspeed --output_dir $OUTPUT &> $OUTPUT/training.log
